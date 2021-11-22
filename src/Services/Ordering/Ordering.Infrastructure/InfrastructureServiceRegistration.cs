@@ -7,11 +7,6 @@ using Ordering.Application.Models;
 using Ordering.Infrastructure.Mail;
 using Ordering.Infrastructure.Persistence;
 using Ordering.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ordering.Infrastructure
 {

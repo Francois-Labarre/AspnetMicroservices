@@ -10,7 +10,8 @@ using ValidationException = Ordering.Application.Exceptions.ValidationException;
 
 namespace Ordering.Application.Behaviours
 {
-    public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TRequest>
+    public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> 
+        where TRequest:IRequest<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -18,8 +19,7 @@ namespace Ordering.Application.Behaviours
         {
             _validators = validators ?? throw new ArgumentNullException(nameof(validators));
         }
-
-        public async Task<TRequest> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TRequest> next)
+        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
             if (_validators.Any())
             {
